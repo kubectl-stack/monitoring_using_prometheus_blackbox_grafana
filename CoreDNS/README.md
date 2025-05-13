@@ -1,6 +1,6 @@
 # CoreDNS via kubeadm (for clusters installed using kubeadm)
 
-##📥 2. Download the CoreDNS deployment manifest:
+## 📥 2. Download the CoreDNS deployment manifest:
 ```bash
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O coredns.yaml.sed
 ```
@@ -13,28 +13,28 @@ You can use sed like this:
 sed -e 's/${CLUSTER_DNS_IP}/10.96.0.10/' -e 's/${DNS_DOMAIN}/cluster.local/' coredns.yaml.sed > coredns.yaml
 ```
 
-##🚀 4. Apply the CoreDNS manifest:
+## 🚀 4. Apply the CoreDNS manifest:
 ```bash
 kubectl apply -f coredns.yaml
 ```
 
-##🧪 Test DNS Resolution
+## 🧪 Test DNS Resolution
 ```bash
 kubectl run -i --tty --rm dns-test --image=busybox:1.28 --restart=Never -- nslookup kubernetes.default
 ```
 
 
 ## Using helm (Advanced or Production Setup)
-##📥 1. Add CoreDNS Helm repo:
+## 📥 1. Add CoreDNS Helm repo:
 ```bash
 helm repo add coredns https://coredns.github.io/helm
 helm repo update
 ```
-##🚀 2. Install CoreDNS via Helm:
+## 🚀 2. Install CoreDNS via Helm:
 ```bash
 helm install coredns coredns/coredns --namespace kube-system
 ```
-##🧪 Test DNS Resolution
+## 🧪 Test DNS Resolution
 
 To verify that DNS resolution works:
 
@@ -54,6 +54,3 @@ To fix this
 kubectl delete pod dns-test
 ```
 after than recreate that container for testing DNS
-
-
-
