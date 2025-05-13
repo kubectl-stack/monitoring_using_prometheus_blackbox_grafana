@@ -1,11 +1,11 @@
 # CoreDNS via kubeadm (for clusters installed using kubeadm)
 
-## 📥 2. Download the CoreDNS deployment manifest:
+## 📥 1. Download the CoreDNS deployment manifest:
 ```bash
 wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O coredns.yaml.sed
 ```
 
-## 🛠️ 3. Modify the coredns.yaml.sed (optional):
+## 🛠️ 2. Modify the coredns.yaml.sed (optional):
 Replace ${CLUSTER_DNS_IP} with your Kubernetes cluster DNS IP (usually 10.96.0.10 for default kubeadm installs), and ${DNS_DOMAIN} with your cluster domain (usually cluster.local).
 You can use sed like this:
 
@@ -13,7 +13,7 @@ You can use sed like this:
 sed -e 's/${CLUSTER_DNS_IP}/10.96.0.10/' -e 's/${DNS_DOMAIN}/cluster.local/' coredns.yaml.sed > coredns.yaml
 ```
 
-## 🚀 4. Apply the CoreDNS manifest:
+## 🚀 3. Apply the CoreDNS manifest:
 ```bash
 kubectl apply -f coredns.yaml
 ```
