@@ -1,14 +1,16 @@
-##CoreDNS via kubeadm (for clusters installed using kubeadm)
+# CoreDNS via kubeadm (for clusters installed using kubeadm)
 
 ##📥 2. Download the CoreDNS deployment manifest:
 ```bash
-wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O coredns.yaml.sed```
+wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/coredns.yaml.sed -O coredns.yaml.sed
+```
 
-##🛠️ 3. Modify the coredns.yaml.sed (optional):
+## 🛠️ 3. Modify the coredns.yaml.sed (optional):
 Replace ${CLUSTER_DNS_IP} with your Kubernetes cluster DNS IP (usually 10.96.0.10 for default kubeadm installs), and ${DNS_DOMAIN} with your cluster domain (usually cluster.local).
 You can use sed like this:
 ```bash
-sed -e 's/${CLUSTER_DNS_IP}/10.96.0.10/' -e 's/${DNS_DOMAIN}/cluster.local/' coredns.yaml.sed > coredns.yaml```
+sed -e 's/${CLUSTER_DNS_IP}/10.96.0.10/' -e 's/${DNS_DOMAIN}/cluster.local/' coredns.yaml.sed > coredns.yaml
+```
 
 ##🚀 4. Apply the CoreDNS manifest:
 ```bash
@@ -38,7 +40,8 @@ kubectl run -i --tty --rm dns-test --image=busybox:1.28 --restart=Never -- nsloo
 ```
 ## issue
 ```bash
-Error from server (AlreadyExists): pods "dns-test" already exists```
+Error from server (AlreadyExists): pods "dns-test" already exists
+```
 
 means that a pod named dns-test already exists in the cluster, likely from a previous 
 
@@ -46,7 +49,6 @@ To fix this
 
 ```bash
 kubectl delete pod dns-test
-
 ```
 after than recreate that container for testing DNS
 
