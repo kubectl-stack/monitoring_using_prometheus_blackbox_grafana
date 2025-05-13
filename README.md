@@ -7,9 +7,17 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 ##You can choose custom release name instead of 'prom'
+if namespace not created than use this command
+
 ```bash
-helm install prom prometheus-community/kube-prometheus-stack
+helm install prom prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace -f values.yaml
 ```
+if namespace already have
+
+```bash
+helm install prom prometheus-community/kube-prometheus-stack -f values.yaml
+```
+check values.yaml
 ## port-forward
 
 ```bash
