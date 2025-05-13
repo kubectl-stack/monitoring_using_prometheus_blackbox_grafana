@@ -8,17 +8,20 @@ wget https://raw.githubusercontent.com/coredns/deployment/master/kubernetes/core
 ## 🛠️ 3. Modify the coredns.yaml.sed (optional):
 Replace ${CLUSTER_DNS_IP} with your Kubernetes cluster DNS IP (usually 10.96.0.10 for default kubeadm installs), and ${DNS_DOMAIN} with your cluster domain (usually cluster.local).
 You can use sed like this:
+
 ```bash
 sed -e 's/${CLUSTER_DNS_IP}/10.96.0.10/' -e 's/${DNS_DOMAIN}/cluster.local/' coredns.yaml.sed > coredns.yaml
 ```
 
 ##🚀 4. Apply the CoreDNS manifest:
 ```bash
-kubectl apply -f coredns.yaml```
+kubectl apply -f coredns.yaml
+```
 
 ##🧪 Test DNS Resolution
 ```bash
-kubectl run -i --tty --rm dns-test --image=busybox:1.28 --restart=Never -- nslookup kubernetes.default```
+kubectl run -i --tty --rm dns-test --image=busybox:1.28 --restart=Never -- nslookup kubernetes.default
+```
 
 
 ## Using helm (Advanced or Production Setup)
